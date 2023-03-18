@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8" />
+        <title>Détection des paniers frauduleux.</title>
+    
+        <!-- Pour appeler des API en javascipt -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- Code d'appel de notre API -->
+        <link rel="stylesheet" type="text/css" href="/static/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
+    
+      </head>
+    <body>
+      <div class="content">
+        <header>
+          <div class="title">
+            <h1 >
+              <table>
+                <tr>
+                  <td>
+                    <a href="/">
+                      <img src="/static/home.jpg" width="80%" height="80%">
+                    </a>
+                  </td>
+                  <td>
+                    Détection des paniers frauduleux.
+                  </td>
+                </tr>
+              </table>
+            </h1>
+          </div>
+        </header>
+      <main>
+        <div class="chartContainer">
+          <table>
+            <tr>
+              <td><b>Estimation :</b></td>
+              <td></td>
+              <td><b>{{say}} (0 pas de fraude, 1 fraude) &nbsp;</b></td>
+            </tr>
+          </table>
+        </div>
+      </main>
+    </body>
+  </html>

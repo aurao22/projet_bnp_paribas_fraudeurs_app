@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Détection des paniers frauduleux.</title>
+
+    <!-- Pour appeler des API en javascipt -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- Code d'appel de notre API -->
+    <script src="/static/prediction.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
+
+  </head>
+
+  <body>
+
+    <div class="content">
+      <header>
+        <div class="title">
+          <h1 >
+            <table>
+              <tr>
+                <td>
+                  <a href="/">
+                    <img src="/static/home.jpg" width="80%" height="80%">
+                  </a>
+                </td>
+                <td>
+                  Détection des paniers frauduleux.
+                </td>
+              </tr>
+            </table>
+          </h1>
+        </div>
+      </header>
+
+      <main>
+        <div class="chartContainer">
+            <table>
+              <tr>
+                <form method="POST" action="{{ url_for('hello') }}">
+                <!-- <form action="/predict" method="POST"> -->
+                  <td>
+                    <div id="prediction" class="form">
+                      <table id="cart_table">
+                        <tr>
+                          <th>Ligne panier</th>
+                          <th>Code</th>
+                          <th>Model</th>
+                          <th>Item</th>
+                          <th>Nb</th>
+                          <th>Cash Price</th>
+                          <th>Make</th>
+                        </tr>
+                        <tr>
+                          <th>1</th>
+                          <td><input id='code1' name='code1' value='99900041'/></td>
+                          <td><input id='model1' name='model1' value='TARGUS GEOLITE ESSENTIAL CASE'/></td>
+                          <td><input id='item1' name='item1' value='TARGUS GEOLITE ESSENTIAL CASE'/></td>
+                          <td><input id='nb1' name='nb1' value='1'/></td>
+                          <td><input id='cash1' name='cash1' value='100'/></td>
+                          <td><input id='make1' name='make1' value='TARGUS'/></td>
+                        </tr>
+                        <tr>
+                          <th>2</th>
+                          <td><input id='code2' name='code2' value='99900044'/></td>
+                          <td><input id='model2' name='model2' value='APPLE SMART'/></td>
+                          <td><input id='item2' name='item2' value='APPLE S'/></td>
+                          <td><input id='nb2' name='nb2' value='1'/></td>
+                          <td><input id='cash2' name='cash2' value='1000'/></td>
+                          <td><input id='make2' name='make2' value='APPLE SMART'/></td>
+                        </tr>
+                        <tr>
+                          <th>3</th>
+                          <td><input id='code3' name='code3' value='237534446'/></td>
+                          <td><input id='model3' name='model3' value='KOBO CLARA HD EREADER 6 ILLUMINATED TOUCH SCREEN W'/></td>
+                          <td><input id='item3' name='item3' value='COMPUTERS'/></td>
+                          <td><input id='nb3' name='nb3' value='1'/></td>
+                          <td><input id='cash3' name='cash3' value='110'/></td>
+                          <td><input id='make3' name='make3' value='KOBO'/></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                  <td>
+                      <button type="button" class="button" onclick="addRow()">+ Ajouter une ligne</button><br>
+
+                      <button type="submit" class="button"><b>Analyser le panier &rarr;</b></button>
+                  </td>
+                </form>
+                <td>
+                  <div id="resultat_prediction" class="prediction_resultat">
+                    <p>
+                      <!-- Afficher le résultat de la prédiction -->
+                      <script>
+
+                        var parameters = location.search.substring(1).split("&");
+                        console.log("parameters:" + parameters)
+                        if (parameters == null || parameters.length==0){
+                          document.write("Cliquez sur le bouton pour analyser le panier.");
+                        }else{
+                          
+                          var temp = parameters[0].split("=");
+                          console.log("temp:"+temp)
+                          if(temp == null){
+                            document.write("Cliquez sur le bouton pour analyser le panier..");
+
+                          }else{
+                            prediction = unescape(temp[1]);
+                            console.log("prediction:"+prediction)
+                            if(prediction == null || prediction == 'undefined'){
+                              document.write("Cliquez sur le bouton pour analyser le panier...");
+                            }else {
+                              document.write(prediction);
+                            }
+                          }
+                        }
+                      </script>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+        </div>
+
+      </main>
+    </div>
+
+  </body>
+</html>
